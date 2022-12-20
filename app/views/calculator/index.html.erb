@@ -1,0 +1,64 @@
+<h1> Hay Sam </h1>
+
+<div> 
+  <input type="" name="" id="inputField">
+</div>
+<div>
+  <button class="operator" data-value="+">+</button>
+  <button class="operator" data-value="-" >-</button>
+  <button class="operator" data-value="*">*</button>
+  <button class="operator" data-value="/">/</button>
+</div>
+<div>
+ <button class="equalOpt">=</button>
+ <button>Rest</button>
+</div>
+
+<script type="text/javascript">
+  var reserveValue = 0
+  var currentValue = 0
+  var selectedOperator = ""
+  var finalResult  = 0
+  var selectedDigit = 0
+
+  $('.operator').on('click', function(){
+    inputValue = $('#inputField').val()
+    formatedValue = parseInt(inputValue)
+    selectedOperator = $(this).data('value');
+    currentValue = formatedValue
+  })
+
+  $('.equalOpt').on("click", function(){
+
+    if(reserveValue == 0 ) {
+      reserveValue = currentValue
+    }
+    finalResult   = perforrmCalculations(reserveValue, currentValue)
+    reserveValue  = finalResult
+    showFinalResult()
+  })
+
+  function perforrmCalculations(value1, value2) {
+    if (selectedOperator === "+") {
+      return value1 + value2
+
+    } else if (selectedOperator === "-") {
+
+      return value1 - value2
+
+    } else if (selectedOperator === "*") {
+
+      return value1 * value2
+
+    } else if (selectedOperator === "/") {
+
+      return value1 / value2
+    }
+  }
+
+  function showFinalResult(){
+    currentValue = 0
+    selectedOperator = ""
+    $('#inputField').val(finalResult)
+  }
+</script>
